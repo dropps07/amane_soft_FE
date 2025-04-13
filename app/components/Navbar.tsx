@@ -93,7 +93,7 @@ export default function Navbar() {
         {/* Desktop right buttons */}
         <div className="hidden md:flex items-center space-x-2">
           <a
-            href="https://github.com/amanesoft"
+            href="https://github.com/dropps07/my-FE-work1"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center px-3 py-2 text-base font-medium transition-colors hover:bg-muted hover:text-primary rounded-md text-foreground"
