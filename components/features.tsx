@@ -10,6 +10,7 @@ const features = [
     icon: Brain,
     color: "from-purple-500 to-indigo-600",
     hoverColor: "group-hover:from-purple-600 group-hover:to-indigo-700",
+    glowColor: "purple-500",
     details: "Our AI solutions process billions of data points to identify patterns invisible to traditional analytics. With self-improving algorithms, your insights become more accurate over time.",
     link: "/solutions/ai-analytics"
   },
@@ -19,6 +20,7 @@ const features = [
     icon: Cloud,
     color: "from-sky-400 to-blue-500",
     hoverColor: "group-hover:from-sky-500 group-hover:to-blue-600",
+    glowColor: "sky-400",
     details: "Deploy with confidence using our containerized applications designed for horizontal scaling. Our solutions adjust automatically to traffic demands, ensuring optimal resource utilization.",
     link: "/solutions/cloud-architecture"
   },
@@ -28,6 +30,7 @@ const features = [
     icon: Shield,
     color: "from-emerald-500 to-green-600",
     hoverColor: "group-hover:from-emerald-600 group-hover:to-green-700",
+    glowColor: "emerald-500",
     details: "Our security protocols comply with ISO 27001, SOC 2, and GDPR frameworks. We employ continuous vulnerability scanning and regular penetration tests to maintain ironclad protection.",
     link: "/solutions/security"
   },
@@ -37,6 +40,7 @@ const features = [
     icon: Zap,
     color: "from-amber-500 to-orange-600",
     hoverColor: "group-hover:from-amber-600 group-hover:to-orange-700",
+    glowColor: "amber-500",
     details: "Experience sub-millisecond response times with our distributed architecture. Our systems process over 10,000 transactions per second while maintaining 99.99% uptime.",
     link: "/solutions/performance"
   },
@@ -78,6 +82,7 @@ export default function Features() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const [gradientPosition, setGradientPosition] = useState({ x: 50, y: 50 });
+  
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
@@ -112,25 +117,18 @@ export default function Features() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32 bg-background text-foreground"
->
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-grid-slate-700 opacity-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/20 to-slate-900/30"></div>
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-400/30 to-transparent"></div>
-      
-      {/* Floating orbs */}
-      <div className="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-purple-500/10 blur-3xl"></div>
-      <div className="absolute bottom-1/3 right-10 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"></div>
+    <section className="relative overflow-hidden py-24 md:py-32 bg-background border-t">
+      {/* Subtle background elements that match the clean CTA style */}
+      <div className="absolute inset-0 bg-grid-slate-200 opacity-5"></div>
       
       <div className="container relative space-y-16 z-10">
         {/* Section header */}
         <div className="mx-auto text-center">
           <h1 
             ref={headingRef} 
-            className="font-bold text-3xl leading-tight sm:text-4xl md:text-5xl overflow-hidden"
+            className="font-bold text-3xl leading-tight sm:text-4xl md:text-5xl"
             style={{
-              backgroundImage: `radial-gradient(circle at ${gradientPosition.x}% ${gradientPosition.y}%, #f5f5f5 0%,rgb(251, 251, 251) 50%, #ffffff 100%)`,
+              backgroundImage: `radial-gradient(circle at ${gradientPosition.x}% ${gradientPosition.y}%, var(--foreground) 0%, var(--foreground) 50%, var(--foreground) 100%)`,
               backgroundSize: '200% 200%',
               color: 'transparent',
               backgroundClip: 'text',
@@ -141,14 +139,14 @@ export default function Features() {
             Cutting-Edge Solutions
           </h1>
           <div 
-            className="mt-2 rounded-full"
+            className="mt-2 rounded-full h-1 w-16 mx-auto"
             style={{
-              backgroundImage: `radial-gradient(circle at ${gradientPosition.x}% ${gradientPosition.y}%, #f5f5f5 0%, #a5b4fc 50%, #ffffff 100%)`,
+              backgroundImage: `radial-gradient(circle at ${gradientPosition.x}% ${gradientPosition.y}%, var(--primary) 0%, var(--primary) 50%, var(--primary) 100%)`,
               backgroundSize: '200% 200%',
               transition: 'background-position 0.3s ease-out'
             }}
           ></div>
-          <p className="mt-6 text-slate-300 sm:text-lg max-w-2xl mx-auto">
+          <p className="mt-6 text-muted-foreground sm:text-lg max-w-2xl mx-auto">
             Discover how Amane Soft can transform your business with our innovative technologies tailored to meet your specific industry challenges.
           </p>
         </div>
@@ -162,7 +160,7 @@ export default function Features() {
               className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 activeCard === idx 
                   ? `bg-gradient-to-r ${feature.color} scale-125` 
-                  : "bg-slate-600"
+                  : "bg-muted"
               }`}
               aria-label={`Select ${feature.name}`}
             />
@@ -183,10 +181,10 @@ export default function Features() {
             >
               {/* Review card - left side */}
               <div className="lg:w-1/2">
-                <div className="h-full backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 md:p-8 relative overflow-hidden group hover:bg-white/15 transition-all duration-300">
+                <div className="h-full bg-card border border-border rounded-2xl p-6 md:p-8 relative overflow-hidden group hover:bg-accent/5 transition-all duration-300">
                   {/* Decorative elements */}
-                  <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rotate-12 bg-gradient-to-br ${reviews[idx].color} opacity-30 rounded-full blur-xl`}></div>
-                  <div className="absolute top-4 left-4 text-white/20">
+                  <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rotate-12 bg-gradient-to-br ${reviews[idx].color} opacity-10 rounded-full blur-xl`}></div>
+                  <div className="absolute top-4 left-4 text-muted-foreground/20">
                     <Quote className="h-16 w-16 rotate-180" />
                   </div>
                   
@@ -198,12 +196,12 @@ export default function Features() {
                           <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                         ))}
                       </div>
-                      <p className="text-lg md:text-xl font-light italic mb-6 text-slate-100">{reviews[idx].text}</p>
+                      <p className="text-lg md:text-xl font-light italic mb-6 text-foreground">{reviews[idx].text}</p>
                     </div>
                     
                     <div className="mt-auto">
-                      <p className="font-semibold text-white">{reviews[idx].author}</p>
-                      <p className="text-sm text-slate-300">{reviews[idx].position}</p>
+                      <p className="font-semibold text-foreground">{reviews[idx].author}</p>
+                      <p className="text-sm text-muted-foreground">{reviews[idx].position}</p>
                     </div>
                   </div>
                 </div>
@@ -211,9 +209,9 @@ export default function Features() {
               
               {/* Feature card - right side */}
               <div className="lg:w-1/2">
-                <div className="h-full backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 md:p-8 relative overflow-hidden group hover:bg-white/15 transition-all duration-300">
+                <div className="h-full bg-card border border-border rounded-2xl p-6 md:p-8 relative overflow-hidden group hover:bg-accent/5 transition-all duration-300">
                   {/* Decorative gradient */}
-                  <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rotate-12 bg-gradient-to-br ${feature.color} opacity-30 rounded-full blur-xl`}></div>
+                  <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rotate-12 bg-gradient-to-br ${feature.color} opacity-10 rounded-full blur-xl`}></div>
                   
                   {/* Feature content */}
                   <div className="relative z-10">
@@ -225,18 +223,18 @@ export default function Features() {
                     </div>
                     
                     <div className="space-y-4">
-                      <h3 className="text-2xl font-bold text-white">{feature.name}</h3>
-                      <p className="text-slate-200">{feature.description}</p>
-                      <p className="text-slate-300 border-l-2 border-white/30 pl-4 py-2">{feature.details}</p>
+                      <h3 className="text-2xl font-bold text-foreground">{feature.name}</h3>
+                      <p className="text-foreground">{feature.description}</p>
+                      <p className="text-muted-foreground border-l-2 border-primary/30 pl-4 py-2">{feature.details}</p>
                       
-                      {/* Learn more link */}
+                      {/* Learn more link with glow effect */}
                       <div className="pt-6">
                         <Button 
                           variant="outline" 
-                          className="group/btn border-white/30 text-white hover:bg-white/20 hover:text-white"
-                          asChild
+                          className="group/btn relative overflow-hidden transition-all duration-300 hover:shadow-md"
                         >
-                          <a href={feature.link}>
+                          <span className={`absolute inset-0 opacity-0 group-hover/btn:opacity-20 bg-${feature.glowColor} blur-md transition-opacity duration-300`}></span>
+                          <a href={feature.link} className="flex items-center relative z-10">
                             Learn more
                             <ArrowRight className="ml-2 h-4 w-4 inline transition-transform duration-300 group-hover/btn:translate-x-1" />
                           </a>
@@ -250,32 +248,27 @@ export default function Features() {
           ))}
         </div>
         
-        {/* Call to action */}
+        {/* Call to action with glowy buttons */}
         <div className="mx-auto max-w-3xl text-center mt-16">
-          <div className="inline-flex backdrop-blur-md bg-white/10 border border-white/20 p-2 px-4 rounded-full">
-            <span className="text-sm text-slate-200">Ready to transform your business?</span>
+          <div className="inline-flex bg-muted border border-border p-2 px-4 rounded-full">
+            <span className="text-sm text-muted-foreground">Ready to transform your business?</span>
           </div>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="relative overflow-hidden group border border-white/30"
+              className="relative overflow-hidden group transition-all duration-300"
             >
+              <span className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/30 opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></span>
+              <span className="absolute -inset-px bg-gradient-to-r from-primary/30 to-primary/10 opacity-0 group-hover:opacity-100 rounded-md blur-sm transition-opacity duration-500"></span>
               <span className="relative z-10">Schedule a Consultation</span>
-              <div 
-                className="absolute inset-0 transition-opacity duration-300"
-                style={{
-                  backgroundImage: `linear-gradient(120deg, rgba(99, 102, 241, 0.8) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(139, 92, 246, 0.8) 100%)`,
-                  backgroundSize: '200% 200%',
-                  opacity: 0.9
-                }}
-              ></div>
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white/30 text-white hover:bg-white/20 hover:text-white"
+              className="relative overflow-hidden group transition-all duration-300"
             >
-              View Case Studies
+              <span className="absolute inset-0 bg-gradient-to-r from-primary/40 to-primary/10 opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-500"></span>
+              <span className="relative z-10">View Case Studies</span>
             </Button>
           </div>
         </div>
