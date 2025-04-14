@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Github, Menu, X, ChevronDown, ExternalLink } from "lucide-react";
 
@@ -36,20 +35,20 @@ export default function Navbar() {
     >
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
         <div className="flex items-center">
-          <Link href="/" className="mr-6 flex items-center space-x-2 group">
-            <div className="bg-primary w-8 h-8 rounded-md flex items-center justify-center text-primary-foreground font-bold text-lg group-hover:scale-110 transition-transform">
+          <a href="/" className="mr-6 flex items-center space-x-2 group">
+            <div className="bg-primary w-9 h-9 rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl group-hover:scale-110 transition-transform">
               A
             </div>
-            <span className="font-bold text-lg bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
+            <span className="font-bold text-xl bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
               Amane<span className="font-light">Soft</span>
             </span>
-          </Link>
+          </a>
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             <div className="relative" onMouseLeave={() => setActiveDropdown(null)}>
               <button
-                className="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted flex items-center"
+                className="px-3 py-2 rounded-md text-base font-medium transition-colors hover:bg-muted hover:text-primary flex items-center text-foreground"
                 onMouseEnter={() => setActiveDropdown("solutions")}
               >
                 Solutions <ChevronDown className="ml-1 h-4 w-4" />
@@ -58,57 +57,57 @@ export default function Navbar() {
                 <div className="absolute left-0 mt-1 w-56 rounded-md bg-background shadow-lg border animate-in fade-in slide-in-from-top-5 duration-300">
                   <div className="py-2">
                     {solutionsMenu.map((item) => (
-                      <Link
+                      <a
                         key={item.name}
                         href={item.href}
-                        className="block px-4 py-2 text-sm hover:bg-muted"
+                        className="block px-4 py-2 text-base hover:bg-muted hover:text-primary"
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
               )}
             </div>
-            <Link
+            <a
               href="/industries"
-              className="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted"
+              className="px-3 py-2 rounded-md text-base font-medium transition-colors hover:bg-muted hover:text-primary text-foreground"
             >
               Industries
-            </Link>
-            <Link
+            </a>
+            <a
               href="/about"
-              className="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted"
+              className="px-3 py-2 rounded-md text-base font-medium transition-colors hover:bg-muted hover:text-primary text-foreground"
             >
               About Us
-            </Link>
-            <Link
+            </a>
+            <a
               href="/blog"
-              className="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted"
+              className="px-3 py-2 rounded-md text-base font-medium transition-colors hover:bg-muted hover:text-primary text-foreground"
             >
               Blog
-            </Link>
+            </a>
           </nav>
         </div>
 
         {/* Desktop right buttons */}
         <div className="hidden md:flex items-center space-x-2">
-          <Link
-            href="https://github.com/amanesoft"
+          <a
+            href="https://github.com/dropps07/my-FE-work1"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center px-3 py-2 text-sm font-medium transition-colors hover:bg-muted rounded-md"
+            className="inline-flex items-center px-3 py-2 text-base font-medium transition-colors hover:bg-muted hover:text-primary rounded-md text-foreground"
           >
-            <Github className="h-4 w-4 mr-2" />
+            <Github className="h-5 w-5 mr-2" />
             GitHub
-          </Link>
-          <Button variant="outline" size="sm" className="group">
+          </a>
+          <Button variant="outline" size="default" className="group text-base font-medium">
             <span>Contact Us</span>
             <div className="w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
           </Button>
-          <Button size="sm" className="bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 transition-all">
+          <Button size="default" className="bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 transition-all text-base font-medium">
             <span>Get a Demo</span>
-            <ExternalLink className="ml-2 h-3 w-3" />
+            <ExternalLink className="ml-2 h-4 w-4" />
           </Button>
         </div>
 
@@ -120,7 +119,7 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
       </div>
@@ -132,66 +131,66 @@ export default function Navbar() {
             <nav className="flex flex-col space-y-2">
               <div className="space-y-1">
                 <button
-                  className="w-full flex justify-between items-center px-2 py-1.5 rounded-md hover:bg-muted"
+                  className="w-full flex justify-between items-center px-3 py-2 rounded-md hover:bg-muted text-base font-medium hover:text-primary text-foreground"
                   onClick={() => setActiveDropdown(activeDropdown === "mobile-solutions" ? null : "mobile-solutions")}
                 >
                   <span>Solutions</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform ${activeDropdown === "mobile-solutions" ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-5 w-5 transition-transform ${activeDropdown === "mobile-solutions" ? "rotate-180" : ""}`} />
                 </button>
                 {activeDropdown === "mobile-solutions" && (
-                  <div className="ml-4 space-y-1 border-l pl-2">
+                  <div className="ml-4 space-y-1 border-l pl-3">
                     {solutionsMenu.map((item) => (
-                      <Link
+                      <a
                         key={item.name}
                         href={item.href}
-                        className="block px-2 py-1.5 text-sm hover:bg-muted rounded-md"
+                        className="block px-3 py-2 text-base hover:bg-muted rounded-md hover:text-primary text-foreground/90"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 )}
               </div>
-              <Link
+              <a
                 href="/industries"
-                className="px-2 py-1.5 rounded-md hover:bg-muted"
+                className="px-3 py-2 rounded-md hover:bg-muted text-base font-medium hover:text-primary text-foreground"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Industries
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/about"
-                className="px-2 py-1.5 rounded-md hover:bg-muted"
+                className="px-3 py-2 rounded-md hover:bg-muted text-base font-medium hover:text-primary text-foreground"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/blog"
-                className="px-2 py-1.5 rounded-md hover:bg-muted"
+                className="px-3 py-2 rounded-md hover:bg-muted text-base font-medium hover:text-primary text-foreground"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Blog
-              </Link>
+              </a>
             </nav>
-            <div className="flex flex-col space-y-2">
-              <Link
+            <div className="flex flex-col space-y-3">
+              <a
                 href="https://github.com/amanesoft"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center px-2 py-1.5 rounded-md hover:bg-muted"
+                className="flex items-center px-3 py-2 rounded-md hover:bg-muted text-base font-medium hover:text-primary text-foreground"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <Github className="h-4 w-4 mr-2" />
+                <Github className="h-5 w-5 mr-2" />
                 GitHub
-              </Link>
-              <Button variant="outline" className="justify-start" onClick={() => setIsMobileMenuOpen(false)}>
+              </a>
+              <Button variant="outline" className="justify-start text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 Contact Us
               </Button>
-              <Button className="bg-gradient-to-r from-primary to-indigo-500" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="bg-gradient-to-r from-primary to-indigo-500 text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 Get a Demo
-                <ExternalLink className="ml-2 h-3 w-3" />
+                <ExternalLink className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
